@@ -1,10 +1,13 @@
 package com.example.repair.repository;
+
 import com.example.repair.entity.WorkHour;
-import org.springframework.data.jpa.repository.*;
-import java.math.BigDecimal;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.time.Instant;
+import java.util.List;
 
 public interface WorkHourRepository extends JpaRepository<WorkHour, Long> {
-    @Query("SELECT COALESCE(SUM(w.hours*w.hourlyRate),0) FROM WorkHour w WHERE w.workOrder.id=:oid")
-    BigDecimal sumCost(Long oid);
+    List<WorkHour> findByWorkOrderIdIn(List<Long> workOrderIds);
+    List<WorkHour> findByWorkOrderCompletedAtBetween(Instant startDate, Instant endDate);
 }
 

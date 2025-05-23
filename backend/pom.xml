@@ -116,7 +116,9 @@
 							<version>${lombok.version}</version> <!-- 添加版本引用 -->
 						</path>
 					</annotationProcessorPaths>
-				</configuration>
+                    <source>6</source>
+                    <target>6</target>
+                </configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
